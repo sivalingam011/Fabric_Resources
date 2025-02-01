@@ -1,0 +1,73 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "testtable",
+                "database": "testingdata"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "631bf861-fa9b-4b31-aa2d-9ad59682a0cc"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "sales",
+                "table": "sample"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "Destination_LK",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "c7f5889a-ba6e-ae6c-4fa1-a29cb4fa02c7",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": []
+      }
+    ]
+  }
+}
