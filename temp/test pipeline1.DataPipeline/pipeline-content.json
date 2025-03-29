@@ -11,8 +11,8 @@
             "datasetSettings": {
               "type": "SqlServerTable",
               "typeProperties": {
-                "schema": "dbo",
-                "table": "testtable",
+                "schema": "relational",
+                "table": "calender",
                 "database": "testingdata"
               },
               "schema": [],
